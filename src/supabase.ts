@@ -1,7 +1,8 @@
 import type { RoomState } from "./domain";
+import { env } from "./env";
 
-const supabaseUrl = Bun.env.SUPABASE_URL;
-const serviceRoleKey = Bun.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseUrl = env.SUPABASE_URL;
+const serviceRoleKey = env.SUPABASE_SERVICE_ROLE_KEY;
 const table = "retro_rooms";
 
 function assertConfig() {

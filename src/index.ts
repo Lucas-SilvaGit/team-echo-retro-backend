@@ -1,6 +1,7 @@
 import { handleRequest } from "./app";
+import { env } from "./env";
 
-const port = Number(Bun.env.PORT ?? 8787);
+const port = Number(env.PORT ?? 8787);
 
 Bun.serve({
   port,
