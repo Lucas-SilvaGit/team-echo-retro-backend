@@ -1,9 +1,7 @@
 {
-  "rewrites": [
-    { "source": "/health", "destination": "/api/health" },
-    { "source": "/rooms", "destination": "/api/rooms" },
-    { "source": "/rooms/:roomId", "destination": "/api/rooms/:roomId" },
-    { "source": "/rooms/:roomId/join", "destination": "/api/rooms/:roomId/join" },
-    { "source": "/rooms/:roomId/mutations", "destination": "/api/rooms/:roomId/mutations" }
+  "routes": [
+    { "src": "/health", "dest": "/api/index.ts" },
+    { "src": "/rooms", "dest": "/api/index.ts" },
+    { "src": "/rooms/(.*)", "dest": "/api/index.ts" }
   ]
 }
