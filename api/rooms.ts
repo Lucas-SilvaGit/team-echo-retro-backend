@@ -1,4 +1,4 @@
-import { handleRoomsRequest } from "../src/routes/rooms.js";
+import { handleRoomsRequest } from "./rooms-handler.js";
 import { handleOptions, toRequest, writeResponse } from "./_bridge";
 
 export default async function handler(req: any, res: any) {
