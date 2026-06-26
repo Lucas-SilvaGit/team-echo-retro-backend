@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/index.ts": {
+      "runtime": "bunjs"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.ts"
+    }
+  ]
+}

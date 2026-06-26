@@ -31,3 +31,13 @@ bun run dev
 ```
 
 If you keep the dependencies installed at the repo root, `bun install` in the backend folder is not required for local editing, but it is the safest way to make the package self-contained.
+
+## Vercel deploy
+
+- Deploy this repo as a Vercel project.
+- Vercel will use `api/index.ts` as the function entrypoint.
+- Set these environment variables in Vercel:
+  - `SUPABASE_URL`
+  - `SUPABASE_SERVICE_ROLE_KEY`
+- `PORT` is only for local development.
+- Point the frontend `VITE_BACKEND_URL` to the deployed backend URL.
