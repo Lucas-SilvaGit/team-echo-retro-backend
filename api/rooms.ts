@@ -1,4 +1,4 @@
-import { handleRoomsRequest } from "../src/routes/rooms";
+import { handleRoomsRequest } from "../src/routes/rooms.js";
 import { toRequest } from "./_bridge";
 
 export default async function handler(req: any, res: any) {
@@ -20,4 +20,3 @@ async function writeResponse(res: any, response: Response) {
   const body = await response.arrayBuffer();
   res.end(Buffer.from(body));
 }
-

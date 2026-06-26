@@ -1,4 +1,4 @@
-import { handleRoomsRequest } from "./routes/rooms";
+import { handleRoomsRequest } from "./routes/rooms.js";
 
 export async function handleRequest(request: Request) {
   try {

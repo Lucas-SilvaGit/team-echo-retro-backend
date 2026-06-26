@@ -1,5 +1,5 @@
-import type { RoomState } from "./domain";
-import { env } from "./env";
+import type { RoomState } from "./domain.js";
+import { env } from "./env.js";
 
 const supabaseUrl = env.SUPABASE_URL;
 const serviceRoleKey = env.SUPABASE_SERVICE_ROLE_KEY;

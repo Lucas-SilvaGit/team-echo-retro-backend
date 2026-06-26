@@ -6,8 +6,8 @@ import {
   normalizeRoom,
   type Participant,
   type RoomMutation,
-} from "../domain";
-import { readRoom, upsertRoom } from "../supabase";
+} from "../domain.js";
+import { readRoom, upsertRoom } from "../supabase.js";
 
 const createRoomSchema = z.object({
   roomName: z.string().trim().min(1),

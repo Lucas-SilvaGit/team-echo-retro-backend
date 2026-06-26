@@ -1,5 +1,5 @@
-import { handleRequest } from "./app";
-import { env } from "./env";
+import { handleRequest } from "./app.js";
+import { env } from "./env.js";
 
 const port = Number(env.PORT ?? 8787);
 
