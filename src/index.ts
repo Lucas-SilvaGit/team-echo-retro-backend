@@ -5,18 +5,28 @@ const port = Number(Bun.env.PORT ?? 8787);
 Bun.serve({
   port,
   async fetch(request) {
-    if (request.method === "OPTIONS") {
-      return emptyResponse();
+    try {
+      if (request.method === "OPTIONS") {
+        return emptyResponse();
+      }
+
+      if (new URL(request.url).pathname === "/health") {
+        return json({ ok: true });
+      }
+
+      const handled = await handleRoomsRequest(request);
+      if (handled) return handled;
+
+      return json({ error: "Not found" }, 404);
+    } catch (error) {
+      console.error(error);
+      return json(
+        {
+          error: error instanceof Error ? error.message : "Unexpected server error",
+        },
+        500,
+      );
     }
-
-    if (new URL(request.url).pathname === "/health") {
-      return json({ ok: true });
-    }
-
-    const handled = await handleRoomsRequest(request);
-    if (handled) return handled;
-
-    return json({ error: "Not found" }, 404);
   },
 });
 

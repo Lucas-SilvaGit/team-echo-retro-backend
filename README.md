@@ -4,11 +4,19 @@ Small Bun + TypeScript API that stores retro rooms in Supabase.
 
 ## Environment
 
-Copy these variables into your local environment:
+Copy `.env.example` to `.env` and fill the values:
+
+```bash
+cp .env.example .env
+```
+
+Use these variables:
 
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `PORT` (optional, defaults to `8787`)
+
+Important: `SUPABASE_SERVICE_ROLE_KEY` stays only in the backend. Do not put it in the frontend.
 
 The front-end reads:
 
@@ -17,7 +25,7 @@ The front-end reads:
 ## Run
 
 ```bash
-cd projects/backend
+cd ../team-echo-retro-backend
 bun install
 bun run dev
 ```

@@ -6,7 +6,9 @@ const table = "retro_rooms";
 
 function assertConfig() {
   if (!supabaseUrl || !serviceRoleKey) {
-    throw new Error("Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY");
+    throw new Error(
+      "Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY. Create a .env file in team-echo-retro-backend.",
+    );
   }
 
   return {
