@@ -1,7 +1,9 @@
 import { handleRoomsRequest } from "../../src/routes/rooms.js";
-import { toRequest } from "../_bridge";
+import { handleOptions, toRequest, writeResponse } from "../_bridge";
 
 export default async function handler(req: any, res: any) {
+  if (handleOptions(req, res)) return;
+
   const response = await handleRoomsRequest(await toRequest(req));
   if (!response) {
     res.statusCode = 404;
@@ -10,13 +12,4 @@ export default async function handler(req: any, res: any) {
   }
 
   await writeResponse(res, response);
-}
-
-async function writeResponse(res: any, response: Response) {
-  res.statusCode = response.status;
-  response.headers.forEach((value, key) => {
-    res.setHeader(key, value);
-  });
-  const body = await response.arrayBuffer();
-  res.end(Buffer.from(body));
 }
