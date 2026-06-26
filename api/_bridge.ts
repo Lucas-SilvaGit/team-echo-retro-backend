@@ -1,7 +1,11 @@
-import { handleRequest } from "../src/app";
+type NodeRequest = {
+  url: string;
+  method?: string;
+  headers?: Record<string, string | string[] | undefined>;
+};
 
-export default async function handler(req: any, res: any) {
-  const url = new URL(req.url, `http://${req.headers.host ?? "localhost"}`);
+export async function toRequest(req: NodeRequest) {
+  const url = new URL(req.url, `http://${req.headers?.host ?? "localhost"}`);
   const method = req.method ?? "GET";
   const headers = new Headers();
 
@@ -14,16 +18,7 @@ export default async function handler(req: any, res: any) {
   }
 
   const body = method === "GET" || method === "HEAD" ? undefined : await readBody(req);
-  const request = new Request(url, { method, headers, body });
-  const response = await handleRequest(request);
-
-  res.statusCode = response.status;
-  response.headers.forEach((value, key) => {
-    res.setHeader(key, value);
-  });
-
-  const responseBody = await response.arrayBuffer();
-  res.end(Buffer.from(responseBody));
+  return new Request(url, { method, headers, body });
 }
 
 async function readBody(req: any) {
@@ -31,5 +26,5 @@ async function readBody(req: any) {
   for await (const chunk of req) {
     chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
   }
-  return Buffer.concat(chunks);
+  return chunks.length ? Buffer.concat(chunks) : undefined;
 }
